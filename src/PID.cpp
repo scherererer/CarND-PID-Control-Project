@@ -29,14 +29,11 @@ void PID::Init(double Kp, double Ki, double Kd)
 	Kd_ = Kd;
 }
 
-void SetBounds (double min, double max)
-{
-}
-
 void PID::UpdateError(double cte)
 {
 	p_error_ = Kp_ * cte;
 
+	/// \todo Should bound this, probably to within [-1,1]
 	i_error_ += Ki_ * cte;
 
 	/// \todo this has an impulse at startup
