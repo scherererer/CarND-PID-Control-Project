@@ -4,20 +4,6 @@
 class PID {
 public:
   /*
-  * Errors
-  */
-  double p_error;
-  double i_error;
-  double d_error;
-
-  /*
-  * Coefficients
-  */ 
-  double Kp;
-  double Ki;
-  double Kd;
-
-  /*
   * Constructor
   */
   PID();
@@ -32,6 +18,8 @@ public:
   */
   void Init(double Kp, double Ki, double Kd);
 
+  void SetBounds (double min, double max);
+
   /*
   * Update the PID error variables given cross track error.
   */
@@ -41,6 +29,24 @@ public:
   * Calculate the total PID error.
   */
   double TotalError();
+
+private:
+  /*
+  * Errors
+  */
+  double p_error_;
+  double i_error_;
+  double d_error_;
+
+  double last_error_;
+
+  /*
+  * Coefficients
+  */ 
+  double Kp_;
+  double Ki_;
+  double Kd_;
+
 };
 
 #endif /* PID_H */
